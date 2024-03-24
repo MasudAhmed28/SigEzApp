@@ -201,8 +201,10 @@ function drawTouch(e) {
 }
 
 function setPosition(x, y) {
-    lastX = x;
-    lastY = y;
+    const rect = canvas.getBoundingClientRect();
+    lastX = x - rect.left;
+    lastY = y - rect.top;
+}Y = y;
 }
       background.addEventListener("change", (e) => {
         ctx.fillStyle = e.target.value;
