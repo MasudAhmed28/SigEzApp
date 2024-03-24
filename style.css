@@ -280,4 +280,7 @@ body.night .social-icons a {
   .social-icons a {
     font-size: 20px;
   }
+  .animated-picture {
+    display: none;
+  }
 }
