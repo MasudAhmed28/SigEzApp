@@ -182,31 +182,27 @@ function endDrawing() {
 }
 
 function startDrawingTouch(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     isDrawing = true;
-    setPositionTouch(e);
+    const touch = e.touches[0];
+    setPosition(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
 }
 
 function drawTouch(e) {
-    e.preventDefault(); 
+    e.preventDefault();
     if (!isDrawing) return;
     
+    const touch = e.touches[0];
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
-    setPositionTouch(e);
+    setPosition(touch.clientX - canvas.getBoundingClientRect().left, touch.clientY - canvas.getBoundingClientRect().top);
     ctx.lineTo(lastX, lastY);
     ctx.stroke();
 }
 
-function setPosition(e) {
-    lastX = e.offsetX;
-    lastY = e.offsetY;
-}
-
-function setPositionTouch(e) {
-    const touch = e.touches[0];
-    lastX = touch.clientX - canvas.getBoundingClientRect().left;
-    lastY = touch.clientY - canvas.getBoundingClientRect().top;
+function setPosition(x, y) {
+    lastX = x;
+    lastY = y;
 }
       background.addEventListener("change", (e) => {
         ctx.fillStyle = e.target.value;
