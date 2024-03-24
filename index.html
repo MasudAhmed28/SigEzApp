@@ -187,8 +187,10 @@
         } else if (e.type.startsWith("touch")) {
           const touch = e.touches[0];
           const rect = canvas.getBoundingClientRect();
-          lastX = touch.clientX - rect.left;
-          lastY = touch.clientY - rect.top;
+          const scaleX = canvas.width / rect.width; 
+          const scaleY = canvas.height / rect.height; 
+          lastX = (touch.clientX - rect.left) * scaleX;
+          lastY = (touch.clientY - rect.top) * scaleY;
         }
       }
 
