@@ -180,16 +180,18 @@
         isDrawing = false;
       }
   
-      function setPosition(e) {
+        function setPosition(e) {
         if (e.type.startsWith("mouse")) {
           lastX = e.offsetX;
           lastY = e.offsetY;
         } else if (e.type.startsWith("touch")) {
           const touch = e.touches[0];
-          lastX = touch.clientX - canvas.getBoundingClientRect().left;
-          lastY = touch.clientY - canvas.getBoundingClientRect().top;
+          const rect = canvas.getBoundingClientRect();
+          lastX = touch.clientX - rect.left;
+          lastY = touch.clientY - rect.top;
         }
       }
+
       background.addEventListener("change", (e) => {
         ctx.fillStyle = e.target.value;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
